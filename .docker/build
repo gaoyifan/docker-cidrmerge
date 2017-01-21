@@ -1,0 +1,12 @@
+#!/bin/bash
+
+apk --no-cache add --virtual build-deps build-base openssl
+cd /tmp
+wget https://downloads.sourceforge.net/project/cidrmerge/cidrmerge/cidrmerge-1.5.3/cidrmerge-1.5.3.tar.gz
+tar xzf cidrmerge-1.5.3.tar.gz
+cd cidrmerge
+make
+install -m755 cidrmerge /usr/bin/
+cd /
+rm -rf /tmp/*
+apk del --purge build-deps
